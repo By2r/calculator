@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <link id="style" rel="stylesheet" href="style.css">
+</head>
+<body id="body">
+    <header>
+        <div class="container">
+            <h1>Calculator</h1>
+            <p>This calculator does not support all functions that are displayed but soon, hopefully, it will. <br> It does not support percentage</p>
+        </div>
+    </header>
+    
+    <div class="calc">
+        <div class="container calcbody">
+            <input type="text" id="equation" readonly>
+            <table>
+                <tr>
+                    <td><button id="AC" class="calc-button">AC</button></td>
+                    <td colspan="2"><button class="calc-button backspace">⌫</button></td>
+                    <td><button class="calc-button operation">/</button></td>
+                </tr>
+                <tr>
+                    <td><button class="calc-button">7</button></td>
+                    <td><button class="calc-button">8</button></td>
+                    <td><button class="calc-button">9</button></td>
+                    <td><button class="calc-button operation">*</button></td>
+                </tr>
+                <tr>
+                    <td><button class="calc-button">4</button></td>
+                    <td><button class="calc-button">5</button></td>
+                    <td><button class="calc-button">6</button></td>
+                    <td><button class="calc-button operation">-</button></td>
+                </tr>
+                <tr>
+                    <td><button class="calc-button">1</button></td>
+                    <td><button class="calc-button">2</button></td>
+                    <td><button class="calc-button">3</button></td>
+                    <td><button class="calc-button operation">+</button></td>
+                </tr>
+                <tr>
+                    <td><button class="calc-button" id="animation">S</button></td>
+                    <td><button class="calc-button">0</button></td>
+                    <td><button class="calc-button operation">.</button></td>
+                    <td><button class="calc-button" id="equals">=</button></td>
+                </tr>
+            </table>
+        </div>
+        
+    </div>
+    <script>
+        var eq = document.getElementById("equation");
+        var buttons = document.getElementsByClassName("calc-button");
+        var operations = document.getElementsByClassName("operation");
+        var operation_value = ['-', '+', '/', '*', '.'];
+        var equals = document.getElementById("equals");
+        var anime = document.getElementById("animation")
+        var body = document.getElementById("body")
+        
+        for (let i = 0; i < buttons.length; i++) {
+            buttons[i].onclick = function () {
+                eq.value += buttons[i].innerHTML
+            };
+            switch (buttons[i].innerHTML) {
+                case 'AC':
+                    buttons[i].onclick = function () {
+                        eq.value = '';
+                    };
+                    break;
+                case '⌫':
+                    buttons[i].onclick = function () {
+                        eq.value = eq.value.slice(0, eq.value.length - 1);
+                    };
+                    break;
+            }
+        }
+
+        for (let i = 0; i < operations.length; i++) {
+            operations[i].onclick = function () {
+                if (operation_value.includes(eq.value[eq.value.length - 1])) {
+                    eq.value = eq.value.slice(0, eq.value.length - 1);
+                }
+                if (!eq.value == '') {
+                    eq.value += operations[i].innerHTML;
+                }
+            }
+        }
+
+
+        equals.onclick = function () {
+            var equation = eq.value;
+            if(operation_value.includes(equation[equation.length-1])){
+                eq.value = eq.value.slice(0, eq.value.length - 1);
+                eq.value = eval(equation);
+            }
+            else{
+                eq.value = eval(equation);
+            }
+            
+        }
+        anime.onclick = function() {
+            var style = document.getElementById("style");
+            var href = style.getAttribute("href");
+            if (href == "style.css"){
+                style.setAttribute("href", "styleblack.css");
+            }
+            else if (href == "styleblack.css"){
+                style.setAttribute("href", "style.css");
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+body {
+    text-align: center;
+    background-color: aliceblue;
+}   
+
+.container {
+    max-width: 650px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+
+#equation {
+    display: block;
+    margin: 0 auto;
+    margin-top: 50px;
+    width: 345px;
+    height: 30px;
+    font-size: x-large;
+    text-align: right;
+    border: 1px solid #2375d4;
+}
+
+.calcbody table {
+    margin: 0 auto;
+    display: inline-block;
+    padding: 10px;
+}
+
+.calc-button {
+    font-size: large;
+    background-color: transparent;
+    width: 85px;
+    height: 85px;
+    cursor: pointer;
+    border: 1px solid #2375d4;
+    transition-duration: 0.7s;
+}
+
+.backspace {
+    width: 173px;
+}
+
+.calc-button:hover {
+    background-color: #2375d4;
+    color: white;
+}
+.operation, #equals {
+    font-size: x-large;
+}
